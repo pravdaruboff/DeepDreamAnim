@@ -223,10 +223,10 @@ def main(inputdir,outputdir,preview,octaves,octave_scale,iterations,jitter,zoom,
             var_counter += 1
 
 def extractVideo(inputdir, outputdir):
-	print subprocess.Popen('ffmpeg -i '+inputdir+' -f image2 '+outputdir+'/image-%3d.jpeg', shell=True, stdout=subprocess.PIPE).stdout.read()
-
+	print subprocess.Popen('ffmpeg -i '+inputdir+' -f image2 '+outputdir+'/image-%04d.jpeg', shell=True, stdout=subprocess.PIPE).stdout.read()
+	
 def createVideo(inputdir,outputdir,framerate):
-	print subprocess.Popen('ffmpeg -r '+str(framerate)+' -f image2 -pattern_type glob -i "'+inputdir+'/*.jpeg" '+outputdir, shell=True, stdout=subprocess.PIPE).stdout.read()
+	print subprocess.Popen('ffmpeg -r '+str(framerate)+' -f image2 -i "'+inputdir+'/%4d.jpeg" '+outputdir, shell=True, stdout=subprocess.PIPE).stdout.read()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='DeepDreamAnim')
